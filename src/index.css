@@ -1,0 +1,7 @@
+/* Nerd mode styles */
+body.nerd {
+  background-color: #000000;
+  color: #00FF00;
+  font-family: monospace;
+  cursor: url('usb-cursor.png'), auto;
+}
