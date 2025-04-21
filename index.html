@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DKR travelsnapz</title>
+    <title>DKR-WEB</title>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,9 +76,15 @@
         font-family: monospace;
         cursor: url("/usb-cursor.png"), auto;
       }
+
+      /* Light Theme Background */
+      .light {
+        background-color: #ecdfbb; /* A professional light blue shade */
+        color: #000; /* Ensure text remains readable */
+      }
     </style>
   </head>
-  <body class="bg-white text-black transition-colors duration-500">
+  <body class="light text-black transition-colors duration-500">
 
     <!-- Matrix canvas -->
     <canvas id="matrix"></canvas>
