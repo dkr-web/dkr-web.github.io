@@ -45,7 +45,7 @@
       .title-travel {
         font-family: 'Raleway', sans-serif;
         font-size: 2rem;
-        font-weight: 300;
+        font-weight: 600; /* Increased font weight for bolder text */
       }
 
       .fade-in {
@@ -79,8 +79,27 @@
 
       /* Light Theme Background */
       .light {
-        background-color: #ecdfbb; /* A professional light blue shade */
+        background: linear-gradient(135deg, #f8b678, #82a6d3); /* Adds a shiny gradient effect */
         color: #000; /* Ensure text remains readable */
+      }
+
+      /* Light Theme Title Section Background */
+      .light .title-section {
+        background-image: url('/photos/photo2.jpg'); /* Replace with your photo's path */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 50px 20px; /* Add padding for spacing */
+        border-radius: 12px; /* Optional: Add rounded corners */
+        color: #000; /* Ensure text is readable */
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7); /* Add text shadow for better contrast */
+      }
+
+      /* Nerd Theme Title Section (no background image) */
+      .nerd .title-section {
+        background: none;
+        color: #00FF00; /* Nerd theme text color */
+        text-shadow: none;
       }
     </style>
   </head>
@@ -92,8 +111,8 @@
     <!-- Page Content -->
     <main class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center p-6 space-y-10">
 
-      <!-- Title -->
-      <div class="flex flex-col items-center fade-in space-y-2">
+      <!-- Title Section -->
+      <div class="title-section flex flex-col items-center fade-in space-y-2">
         <h1 id="title-dk" class="title-dk px-4 py-2"></h1>
         <span id="title-travel" class="title-travel px-4 py-2"></span>
       </div>
