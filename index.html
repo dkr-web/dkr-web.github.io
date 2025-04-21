@@ -71,7 +71,7 @@
       }
 
       .nerd {
-        background-color: #000 !important;
+        background-color: #000;
         color: #00FF00 !important;
         font-family: monospace;
         cursor: url("/usb-cursor.png"), auto;
@@ -94,8 +94,8 @@
 
       <!-- Title -->
       <div class="flex flex-col items-center fade-in space-y-2">
-        <h1 class="title-dk glow-border px-4 py-2">DKR</h1>
-        <span class="title-travel glow-border px-4 py-2">travelsnapz</span>
+        <h1 id="title-dk" class="title-dk px-4 py-2"></h1>
+        <span id="title-travel" class="title-travel px-4 py-2"></span>
       </div>
 
       <!-- Description -->
@@ -256,6 +256,31 @@
       }, { threshold: 0.1 });
 
       fadeIns.forEach(el => observer.observe(el));
+    </script>
+    <script>
+      function typeText(elementId, text, delay = 200, callback = null) {
+        const element = document.getElementById(elementId);
+        let index = 0;
+
+        function type() {
+          if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, delay);
+          } else if (callback) {
+            callback();
+          }
+        }
+
+        type();
+      }
+
+      // Trigger typing effect on page load
+      window.addEventListener("DOMContentLoaded", () => {
+        typeText("title-dk", "DKR", 250, () => {
+          typeText("title-travel", "travelsnapz", 250);
+        });
+      });
     </script>
   </body>
 </html>
