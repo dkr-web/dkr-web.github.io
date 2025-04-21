@@ -78,10 +78,24 @@
         cursor: url("/usb-cursor.png"), auto;
       }
 
-      /* Light Theme Background */
+      /* Light Theme Background with Animated Gradient */
       .light {
-        background: linear-gradient(135deg, #f8d678, #ffffff); /* Adds a shiny gradient effect */
+        background: linear-gradient(135deg, #c55616, #ffffff);
+        background-size: 200% 200%; /* Makes the gradient larger for animation */
+        animation: gradientShift 6s ease infinite; /* Smooth infinite animation */
         color: #000; /* Ensure text remains readable */
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       /* Light Theme Title Section Background */
