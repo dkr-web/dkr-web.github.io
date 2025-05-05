@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DKR-WEB</title>
+    <title>DKR.WEB</title>
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -78,36 +78,18 @@
         cursor: url("/usb-cursor.png"), auto;
       }
 
-      /* Light Theme Background with Animated Gradient */
+      /* Light Theme Background */
       .light {
-        background: linear-gradient(135deg, #c55616, #ffffff);
-        background-size: 200% 200%; /* Makes the gradient larger for animation */
-        animation: gradientShift 6s ease infinite; /* Smooth infinite animation */
+        background: #ffffff; /* Plain white background */
         color: #000; /* Ensure text remains readable */
       }
 
-      @keyframes gradientShift {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      /* Light Theme Title Section Background */
+      /* Light Theme Title Section */
       .light .title-section {
-        background-image: url('/portfolio/photos/photo3.jpg'); /* Replace with your photo's path */
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        padding: 50px 20px; /* Add padding for spacing */
-        border-radius: 12px; /* Optional: Add rounded corners */
-        color: #000; /* Ensure text is readable */
-        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7); /* Add text shadow for better contrast */
+        background: none; /* Remove the background image */
+        padding: 50px 20px; /* Keep padding for spacing */
+        color: #000; /* Ensure text remains readable */
+        text-shadow: none; /* Remove text shadow */
       }
 
       /* Nerd Theme Title Section (no background image) */
