@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Match Game</title>
+    <style>
+        /* Nerd Mode Styles */
+        body {
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: black; /* Nerd mode background */
+            color: #00FF00; /* Nerd mode text color */
+            cursor: url("/usb-cursor.png"), auto; /* Nerd mode cursor */
+        }
+        h1, h2, h3, h4 {
+            color: #00FF00; /* Nerd mode text color */
+            text-shadow: none; /* Remove text shadow */
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+        }
+        h3 {
+            font-size: 1.5rem;
+        }
+        h4 {
+            font-size: 1.2rem;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            margin: 20px;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #00FF00; /* Nerd mode card background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: black; /* Text color for flipped cards */
+            cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .card.flipped {
+            background-color: #000; /* Flipped card background */
+            color: #00FF00; /* Flipped card text color */
+            transform: scale(1.05);
+        }
+        .card.matched {
+            background-color: #00FF00; /* Matched card background */
+            color: black; /* Matched card text color */
+            cursor: default;
+        }
+        #timer, #fastest-time {
+            font-size: 18px;
+            margin: 10px;
+        }
+        #reset-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #00FF00; /* Nerd mode button background */
+            color: black; /* Nerd mode button text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 255, 0, 0.2);
+        }
+        #reset-btn:hover {
+            background-color: #00CC00; /* Hover effect for button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Memory Match Game</h1>
+    <h2>Click 2 cards at a time to find matching pairs</h2>
+    <h3>Try to match all pairs in the fastest time!</h3>
+    <h4>Timer starts when you flip the first card</h4>
+    <div id="timer">Time: <span id="timer-value">0</span> seconds</div>
+    <div id="fastest-time">Fastest Time To Beat: <span id="fastest-time-value">--</span> ⏱️</div>
+    <div id="game-board"></div>
+    <button id="reset-btn">Reset Game</button>
+    <h4>Notes.
+        If you ever want to reset the fastest time manually, open your browser’s developer tools (F12), go to the Console tab, and type:
+        localStorage.clear();
+        Then press Enter to clear the fastest time from local storage.
+    </h4>
+
+    <script>
+        const gameBoard = document.getElementById('game-board');
+        const timerValue = document.getElementById('timer-value');
+        const fastestTimeValue = document.getElementById('fastest-time-value');
+        const resetBtn = document.getElementById('reset-btn');
+        let cards = [];
+        let flippedCards = [];
+        let timer = 0;
+        let timerInterval;
+        let timerStarted = false; // Flag to track if the timer has started
+        let fastestTime = localStorage.getItem('fastestTime') ? parseInt(localStorage.getItem('fastestTime')) : null;
+
+        // Display initial fastest time
+        fastestTimeValue.textContent = fastestTime !== null ? `${fastestTime} seconds` : '--';
+
+        // Start timer
+        function startTimer() {
+            timer = 0;
+            timerValue.textContent = timer;
+            timerInterval = setInterval(() => {
+                timer++;
+                timerValue.textContent = timer;
+            }, 1000);
+        }
+
+        // Stop timer
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        // Update fastest time
+        function updateFastestTime() {
+            if (fastestTime === null || timer < fastestTime) {
+                fastestTime = timer;
+                fastestTimeValue.textContent = `${fastestTime} seconds`;
+                localStorage.setItem('fastestTime', fastestTime);
+            }
+        }
+
+        // Initialize game
+        function initGame() {
+            gameBoard.innerHTML = '';
+            cards = [];
+            flippedCards = [];
+            stopTimer(); // Stop any existing timer
+            timerStarted = false; // Reset the timer flag
+            timerValue.textContent = 0; // Reset the timer display
+
+            const cardContents = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            const allCards = [...cardContents, ...cardContents];
+
+            // Shuffle array
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            const shuffledCards = shuffle([...allCards]);
+            shuffledCards.forEach(content => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.content = content;
+                card.textContent = '?';
+                card.addEventListener('click', flipCard);
+                gameBoard.appendChild(card);
+                cards.push(card);
+            });
+        }
+
+        // Flip card logic
+        function flipCard() {
+            if (!timerStarted) {
+                startTimer(); // Start the timer on the first click
+                timerStarted = true;
+            }
+
+            if (flippedCards.length < 2 && !this.classList.contains('flipped') && !this.classList.contains('matched')) {
+                this.classList.add('flipped');
+                this.textContent = this.dataset.content;
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    checkMatch();
+                }
+            }
+        }
+
+        // Check for match
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.content === card2.dataset.content) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                flippedCards = [];
+
+                // Check if all cards are matched
+                if (cards.every(card => card.classList.contains('matched'))) {
+                    stopTimer();
+                    updateFastestTime(); // Update fastest time if applicable
+                    alert(`Game Over! You completed the game in ${timer} seconds.`);
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    card1.textContent = '?';
+                    card2.textContent = '?';
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        // Reset game
+        resetBtn.addEventListener('click', initGame);
+
+        // Start game on load
+        initGame();
+    </script>
+    <div style="margin-top: 20px;">
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-3 rounded-xl transition">
+            Back to Home
+        </a>
+    </div>
+</body>
+</html>
