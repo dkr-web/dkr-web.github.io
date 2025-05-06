@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="scottish">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,77 +11,138 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Raleway:wght@300;600&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="index.css" />
+    <style>
+      /* Scottish Theme Styles */
+      body {
+        font-family: 'Raleway', sans-serif;
+        background: linear-gradient(to bottom, #003366, #006400); /* Scottish flag blue to green gradient */
+        color: white;
+      }
+
+      h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        text-align: center;
+        color: #ffffff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        margin-bottom: 40px; /* Add more space below the heading */
+        margin-top: -40px; /* Move the heading closer to the top */
+      }
+
+      main {
+        padding-top: 140px; /* Add more padding above the content */
+      }
+
+      .scottish .fade-in {
+        background-color: rgba(255, 255, 255, 0.9); /* Light background for photo cards */
+        border: 2px solid #003366; /* Scottish blue border */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .scottish .fade-in:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .scottish img {
+        border-bottom: 2px solid #006400; /* Green border under images */
+      }
+
+      .scottish h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #003366; /* Scottish blue */
+      }
+
+      .scottish p {
+        font-size: 1rem;
+        color: #006400; /* Scottish green */
+      }
+
+      .scottish a {
+        background-color: #003366; /* Scottish blue */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .scottish a:hover {
+        background-color: #006400; /* Scottish green on hover */
+      }
+    </style>
   </head>
-  <body class="light text-black transition-colors duration-500">
+  <body class="scottish">
     <!-- Page Content -->
-    <main class="relative z-10 px-6 py-16 bg-white">
-      <h1 class="text-3xl font-bold text-center mb-10">Full Photo Gallery</h1>
+    <main class="relative z-10 px-6 py-16">
+      <h1>Full Photo Gallery</h1>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- Add more photo cards here -->
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo7.jpg" class="w-full h-64 object-cover" alt="Photo 5" />
+        <!-- Photo Cards -->
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo7.jpg" class="w-full h-64 object-cover" alt="Gare Loch" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">Gare Loch</h3>
-            <p class="text-sm text-gray-600">Majestic views.</p>
+            <h3>Gare Loch</h3>
+            <p>Majestic views.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo6.jpg" class="w-full h-64 object-cover" alt="Photo 6" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo6.jpg" class="w-full h-64 object-cover" alt="Forest Path" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">Forest Path</h3>
-            <p class="text-sm text-gray-600">A walk to remember.</p>
+            <h3>Forest Path</h3>
+            <p>A walk to remember.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo5.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo5.jpg" class="w-full h-64 object-cover" alt="City Lights" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">City Lights</h3>
-            <p class="text-sm text-gray-600">The urban glow.</p>
-          </div>
-          <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-            <img src="/portfolio/photos/photo8.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
-            <div class="p-4">
-              <h3 class="font-semibold text-xl">Glen Etive</h3>
-              <p class="text-sm text-gray-600">The highlands.</p>
-            </div>
+            <h3>City Lights</h3>
+            <p>The urban glow.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo9.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo8.jpg" class="w-full h-64 object-cover" alt="Glen Etive" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">The Glen</h3>
-            <p class="text-sm text-gray-600">With a sunset.</p>
+            <h3>Glen Etive</h3>
+            <p>The highlands.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo10.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo9.jpg" class="w-full h-64 object-cover" alt="The Glen" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">Scotlands Beauty</h3>
-            <p class="text-sm text-gray-600">Ballachulish.</p>
+            <h3>The Glen</h3>
+            <p>With a sunset.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo11.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo10.jpg" class="w-full h-64 object-cover" alt="Scotlands Beauty" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">Clythness Lighthouse</h3>
-            <p class="text-sm text-gray-600">Scottish east coast.</p>
+            <h3>Scotlands Beauty</h3>
+            <p>Ballachulish.</p>
           </div>
         </div>
-        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
-          <img src="/portfolio/photos/photo12.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo11.jpg" class="w-full h-64 object-cover" alt="Clythness Lighthouse" />
           <div class="p-4">
-            <h3 class="font-semibold text-xl">East Coast</h3>
-            <p class="text-sm text-gray-600">Farm life.</p>
+            <h3>Clythness Lighthouse</h3>
+            <p>Scottish east coast.</p>
+          </div>
+        </div>
+        <div class="fade-in">
+          <img src="/portfolio/photos/photo12.jpg" class="w-full h-64 object-cover" alt="East Coast" />
+          <div class="p-4">
+            <h3>East Coast</h3>
+            <p>Farm life.</p>
           </div>
         </div>
       </div>
       <!-- Back to Home Button -->
       <div class="text-center mt-10">
-        <a href="index.html" class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-3 rounded-xl transition">
-          Back to Home
-        </a>
+        <a href="index.html">Back to Home</a>
       </div>
     </main>
   </body>
