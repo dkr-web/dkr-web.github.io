@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - DKR.WEB</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Raleway:wght@300;600&display=swap" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="light text-black transition-colors duration-500">
+    <!-- Page Content -->
+    <main class="relative z-10 px-6 py-16 bg-white">
+      <h1 class="text-3xl font-bold text-center mb-10">Full Photo Gallery</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Add more photo cards here -->
+        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
+          <img src="/portfolio/photos/photo7.jpg" class="w-full h-64 object-cover" alt="Photo 5" />
+          <div class="p-4">
+            <h3 class="font-semibold text-xl">Gare Loch</h3>
+            <p class="text-sm text-gray-600">Majestic views.</p>
+          </div>
+        </div>
+        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
+          <img src="/portfolio/photos/photo6.jpg" class="w-full h-64 object-cover" alt="Photo 6" />
+          <div class="p-4">
+            <h3 class="font-semibold text-xl">Forest Path</h3>
+            <p class="text-sm text-gray-600">A walk to remember.</p>
+          </div>
+        </div>
+        <div class="fade-in rounded-xl overflow-hidden shadow-lg">
+          <img src="/portfolio/photos/photo5.jpg" class="w-full h-64 object-cover" alt="Photo 7" />
+          <div class="p-4">
+            <h3 class="font-semibold text-xl">City Lights</h3>
+            <p class="text-sm text-gray-600">The urban glow.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Back to Home Button -->
+      <div class="text-center mt-10">
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-800 text-white px-6 py-3 rounded-xl transition">
+          Back to Home
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
